@@ -73,4 +73,21 @@ public class EmployeeRepository {
   public boolean deleteEmployee(String id) {
     return employeeList.removeIf(employee -> employee.getId().equals(id));
   }
+
+  public Employee updateEmployeeId(String id, Employee updatedEmployee) {
+    for (int i = 0; i < employeeList.size(); i++) {
+      Employee existingEmployee = employeeList.get(i);
+      if (existingEmployee.getId().equals(id)) {
+        // Обновляем нужные поля
+        existingEmployee.setFirstName(updatedEmployee.getFirstName());
+        existingEmployee.setLastName(updatedEmployee.getLastName());
+        existingEmployee.setAddress(updatedEmployee.getAddress());
+        // Добавь другие поля по мере необходимости
+
+        return existingEmployee;
+      }
+    }
+    return null; // Если не найден
+  }
+
 }

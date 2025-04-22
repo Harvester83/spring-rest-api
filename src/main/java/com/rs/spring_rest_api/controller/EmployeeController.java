@@ -18,14 +18,14 @@ public class EmployeeController {
   @GetMapping(path = "/get-list")
   public List<Employee> getAllEmployeeList() {
 
-
-
     // Test
     System.out.println(1);
     ArrayList<String> cars = new ArrayList<String>();
     cars.add("Audi");
     cars.add("BMW");
     cars.add("Nissan");
+
+    cars.add(0, "Honda");
 
     System.out.println(cars);
 
@@ -50,9 +50,14 @@ public class EmployeeController {
     return employeeService.saveEmployee(employee);
   }
 
-
   @DeleteMapping(path = "/delete/{id}")
   public boolean deleteEmployee(@PathVariable(name = "id", required = true) String id) {
     return employeeService.deleteEmployee(id);
   }
+
+  @PutMapping(path = "/update/{id}")
+  public Employee updateEmployee(@PathVariable String id, @RequestBody Employee employee) {
+      return employeeService.updateEmployeeId(id, employee);
+  }
+
 }
